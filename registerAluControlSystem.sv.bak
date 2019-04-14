@@ -1,0 +1,22 @@
+module registerAluControlSystem(instruction,clk,reset,Rd,Rm,Rn,Reg2Loc,RegWrite,ALUSrc,ALUSrc2,ALUOp,DAddr9,Imm12);
+	input logic [31:0] instruction;
+	input logic clk,reset;
+	output logic [4:0] Rd,Rm,Rn,;
+	output logic Reg2Loc,RegWrite,ALUSrc,ALUSrc2;
+	output logic [2:0] ALUOp;	
+	output logic [8:0] DAddr9; // output logic for store and load
+	output logic [11:0] Imm12; // output for addi	
+	
+	always_ff @(posedge clk)
+		if (reset == 1) begin
+			UncondBr <= 0;
+			BrTaken <= 0;
+			end
+		else begin
+			if (instruction[31:26] == 6'b000101) begin//B opecode
+				BrTaken <= 1;
+				UncondBr <= 1;
+				in_26 <= instruction[25:0];
+			end
+		end
+endmodule 

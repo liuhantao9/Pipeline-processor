@@ -1,0 +1,14 @@
+module decoder5_32(register_enable, RegWrite, WRigster);
+	output logic [31:0] register_enable;
+	input logic RegWrite;
+	input logic [4:0] WRigster;
+	logic [1:0] tempout;
+	
+	genvar i,j;
+	generate
+	for(i=0; i<5; i++) begin : eachDecoder
+		decoder1_2 Decoder (.out(tempout), .in(in[4]), .RegWrite);
+		decoder1_2 Decoder (.out(tempout), .in(in[3]), .RegWrite.(tempout[1]));
+	end
+	endgenerate
+endmodule 

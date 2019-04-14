@@ -1,0 +1,16 @@
+module single_data_pass(out, in, enable, clk);
+	output logic out;
+	input logic in, enable, reset;
+	input logic clk;
+	logic temp;
+	
+	mux2_1 if_pass (.out, .i0(out), .i1(in), .sel(enable));
+	
+	always_ff @(posedge clk) begin // Hold val until clock edge
+	if (reset)
+		out <= 0; // On reset, set to 0
+	else
+		out <= out; 
+	end	
+
+	endmodule

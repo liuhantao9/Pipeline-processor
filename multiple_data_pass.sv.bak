@@ -1,0 +1,14 @@
+module mulitple_data_pass(out, in, enable, reset, clk);
+	output logic [63:0] out;
+	input logic [63:0]in;
+	input logic clk;
+	input logic enable, reset;
+	
+	genvar i;
+	generate
+	for(i=0; i < 64; i++) begin : each_data_set
+	data_set(.out(out[i]), .in(in[i]), .enable, .reset, .clk);
+	end
+	endgenerate 	
+
+	endmodule

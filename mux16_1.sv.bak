@@ -1,0 +1,23 @@
+module mux16_1(out, in, control);
+ output logic out;
+ input logic [15:0]in;
+ input logic [3:0] control;
+
+ logic [3:0]temp_out;
+
+ mux2_1 m0(.out(v0), .i0(i00), .i1(i01), .sel(sel0));
+ mux2_1 m1(.out(v1), .i0(i10), .i1(i11), .sel(sel0));
+ mux2_1 m (.out(out), .i0(v0), .i1(v1), .sel(sel1));
+ 
+ 	genvar i;
+	generate
+	for(i=0; i < 4; i++) begin : each_mux
+		mux4_1 m(.out(temp_out[3-i]), .i00(in[15-4i]), .i01(in[14-4i]), 
+					.i10(in[13-4i]), .i11(in[12-4i]), .sel0(control[3]), .sel1(control[2]));			
+	end
+	endgenerate
+	
+	mux4_1 m(.out, .i00(temp_out[3]), .i01(temp_out[2]), 
+					.i10(temp_out[1]), .i11(temp_out[0]), .sel0(control[1]), .sel1(control[0]));
+	
+endmodule

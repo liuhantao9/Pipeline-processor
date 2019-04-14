@@ -1,0 +1,14 @@
+module multiplexor(out, in, control);
+ output logic [63:0] out;
+ input logic [31:0][63:0]in;
+ input logic [4:0] control;
+
+	
+	genvar i;
+	generate
+	for(i=0; i < 64; i++) begin : eachmulti
+			mux32_1	multi1(.out(out[63-i]), .in(in[31:0][63-i]),
+									 .control(control[4:0]));
+	end
+	endgenerate 	
+endmodule

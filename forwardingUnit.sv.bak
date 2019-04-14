@@ -1,0 +1,34 @@
+module forwardingUnit(RnControl,RmControl,IFIDRn,IFIDRm,IFEXRd,EXMEMRd,IFEXRegWrite,EXMEMRegWrite);
+	
+	// take RegWrite signals from excution and memory phase resepctively
+	input logic IFEXRegWrite,EXMEMRegWrite;
+	// control bits for two forward multiplexors
+	output logic [1:0] RnControl,RmControl;
+	// gain using registers from instructions
+	input logic [4:0] IFIDRn,IFIDRm;
+	// take the write registers from the previous two cycles
+	input logic [4:0] IFEXRd,EXMEMRd;
+
+
+	always_comb begin
+		if (EXMEMRegWrite == 1) begin
+			if(EXMEMRd == IFIDRn) begin
+				RnControl = 2'b10;
+			end
+			if(EXMEMRd == IFIDRm) begin
+				RmControl = 2'b10;
+			end
+		end else if (IFEXRegWrite == 1) begin
+			if(IFEXRd == IFIDRn) begin
+				RnControl = 2'b01;
+			end
+			if(IFEXRd == IFIDRm) begin
+				RmControl = 2'b01
+			end
+		end else begin
+			RnControl = 2'b00;
+			RmControl = 2'b00;
+		end
+	end
+
+endmodule 

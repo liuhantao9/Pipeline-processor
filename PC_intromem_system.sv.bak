@@ -1,0 +1,23 @@
+module PC_intromem_system(instruction,in_19,in_26,UncondBr,BrTaken,clk,reset);
+	input logic [18:0] in_19;
+	input logic [25:0] in_26;
+	input logic UncondBr,BrTaken;
+	output logic [31:0] instruction;
+	logic [63:0] SEout;
+	logic [63:0] BrTakenin1, BrTakenin0;
+	logic [63:0] pc_out, pc_in;
+	input logic clk,reset;
+	
+	pc program_counter (.pc_out,.pc_in,.reset,.clk);
+	SE_to_shifter SE_shifter(.in_19,.in_26,.UncondBr,.out(SEout));
+	adder uncond_add (.A(SEout), .B(pc_out), .result(BrTakenin1)); 
+	adder regular_add (.A(pc_out), .B(64'b4), .result(BrTakenin0));
+
+	genvar i;
+	generate
+	for (i = 0; i < 64; i++) begin: eamux
+		mux2_1 brtaken_mux(.out(pc_in[i]), .i0(BrTakenin0), .i1(BrTakenin1), .sel(BrTaken));
+	end
+	endgenerate	
+	instructmem to_instructmem (.address(pc_out), .instruction, .clk);
+endmodule

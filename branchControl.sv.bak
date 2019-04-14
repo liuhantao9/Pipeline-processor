@@ -1,0 +1,38 @@
+module branchControl(CBZ_zeroFlag, pcToReg, Reg_instruction, PC_Src,pc_branch_address);
+	input logic CBZ_zeroFlag;
+	input logic [63:0] pcToReg;
+	input logic [31:0] Reg_instruction;
+	output logic [63:0] pc_branch_address;
+	output logic PC_Src;
+	logic [18:0] in_19;
+	logic [25:0] in_26;
+	logic UncondBr;
+
+	
+	SE_to_shifter SE_shifter(.in_19,.in_26,.UncondBr,.out(SEout));
+	adder branch_add (.A(pcToReg), .B(SEout), .result(pc_branch_address));
+
+	
+	
+	always_comb begin
+		if (Reg_instruction[31:26] == 6'b000101) begin // B
+			PC_Src = 1;
+			in_19 = 19'bx;
+			in_26 = Reg_instruction[25:0];
+			UncondBr = 1;
+		end else if (Reg_instruction[31:24] == 8'hB4) begin // CBZ
+			PC_Src = CBZ_zeroFlag;		
+			in_19 = Reg_instruction[23:5];
+			in_26 = 26'bx;	
+			UncondBr = 0;
+		end else 
+			PC_Src = 0;		
+			in_19 = 19'bx;
+			in_26 = 26'bx;	
+			UncondBr = 1'bx;
+		end
+		
+endmodule
+
+
+			

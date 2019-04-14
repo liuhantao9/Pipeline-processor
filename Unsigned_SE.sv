@@ -1,0 +1,15 @@
+module Unsigned_SE #(parameter WIDTH = 12) (SE_out,in);
+	input logic [WIDTH-1:0] in;
+	output logic [63:0] SE_out;
+	
+	
+	initial assert(WIDTH > 0 && WIDTH <= 64);
+	
+	genvar i;
+	generate
+	for (i = WIDTH; i < 64; i++) begin: ease
+		assign SE_out[i] = 0;
+	end
+	endgenerate
+	assign SE_out[WIDTH-1:0] = in[WIDTH-1:0];
+endmodule

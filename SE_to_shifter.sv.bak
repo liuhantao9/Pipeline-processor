@@ -1,0 +1,14 @@
+module SE_to_shifter(in_19,in_26,UncondBr,out);
+	input logic [18:0] in_19;
+	input logic [25:0] in_26;
+	input logic UnconBr;
+	output logic [63:0] out;
+	logic [63:0] SEout19,SEout26;
+	logic [63:0] shifter_in;
+	
+	SE_19 se19 (.SE_out(SEout19),.in(in_19));
+	SE_26 se26 (.SE_out(SEout26),.in(in_26));
+	mux2_1 oneSE (.out(shifter_in), .i0(SEout19), .i1(SEout26), .sel(UnconBr));
+	shifter_left_2 shifter(.in(shifter_in),.out);
+endmodule
+

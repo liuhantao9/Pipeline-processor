@@ -1,0 +1,13 @@
+module LdurHarzardControl(Mem_RegWE_mod,Mem_RegWE,Mem_Mem2Reg,mem_to_register);
+	input logic Mem_Mem2Reg,Wr_RegWE;
+	input logic [63:0] mem_to_register;
+	output logic Wr_RegWE_mod;
+
+	always_comb begin
+		if (mem_to_register = 64'bx && Mem_Mem2Reg == 1) begin // no data in the memory
+			Mem_RegWE_mod = 0;
+		end else begin
+			Mem_RegWE_mod = Mem_RegWE;
+		end
+	end
+endmodule	

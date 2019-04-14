@@ -1,0 +1,9 @@
+module clk_to_enable(e_out, e_in, clk);
+	output logic e_out;
+	input logic e_in;
+	input logic clk;
+	
+	always_ff @(posedge clk) begin 
+		e_out <= e_in;
+	
+	endmodule

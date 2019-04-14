@@ -1,0 +1,66 @@
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Warning (10273): Verilog HDL warning at processor.sv(75): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 75
+Warning (10273): Verilog HDL warning at processor.sv(77): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 77
+Info (10281): Verilog HDL Declaration information at processor.sv(14): object "DAddr9" differs only in case from object "daddr9" in the same scope File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 14
+Info (10281): Verilog HDL Declaration information at processor.sv(25): object "Imm16" differs only in case from object "imm16" in the same scope File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 25
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(20): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 20
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(22): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 22
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(25): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 25
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(28): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 28
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(30): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 30
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(33): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 33
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(34): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 34
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(35): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 35
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(41): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 41
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(43): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 43
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(46): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 46
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(47): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 47
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(48): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 48
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(54): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 54
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(56): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 56
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(59): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 59
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(60): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 60
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(61): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 61
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(62): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 62
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(64): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 64
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(67): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 67
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(69): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 69
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(73): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 73
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(74): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 74
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(77): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 77
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(82): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 82
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(86): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 86
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(87): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 87
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(90): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 90
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(95): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 95
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(98): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 98
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(99): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 99
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(101): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 101
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(103): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 103
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(117): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 117
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(120): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 120
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(121): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 121
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(123): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 123
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(125): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 125
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(143): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 143
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(144): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 144
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(147): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 147
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(152): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 152
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(156): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 156
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(157): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 157
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(160): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 160
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(165): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 165
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(170): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 170
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(171): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 171
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(172): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 172
+Warning (10273): Verilog HDL warning at registerAluControlSystem.sv(173): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/registerAluControlSystem.sv Line: 173
+Warning (10273): Verilog HDL warning at branchControl.sv(19): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/branchControl.sv Line: 19
+Warning (10273): Verilog HDL warning at branchControl.sv(25): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/branchControl.sv Line: 25
+Warning (10273): Verilog HDL warning at branchControl.sv(34): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/branchControl.sv Line: 34
+Warning (10273): Verilog HDL warning at branchControl.sv(38): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/branchControl.sv Line: 38
+Warning (10273): Verilog HDL warning at branchControl.sv(39): extended using "x" or "z" File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/branchControl.sv Line: 39
+Warning (10034): Output port "ReadData1" at processor.sv(13) has no driver File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 13
+Warning (10034): Output port "ReadData2" at processor.sv(13) has no driver File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 13
+Warning (10034): Output port "WriteData" at processor.sv(11) has no driver File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/processor.sv Line: 11
+Warning (10030): Net "mux_in[7]" at single_alu.sv(5) has no driver or initial value, using a default initial value '0' File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/single_alu.sv Line: 5
+Warning (10030): Net "mux_in[1]" at single_alu.sv(5) has no driver or initial value, using a default initial value '0' File: F:/ebook/EE469/Lab4_files_Qihua_Yang_1534960/Lab4_files/single_alu.sv Line: 5

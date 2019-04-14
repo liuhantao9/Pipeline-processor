@@ -1,0 +1,122 @@
+module processor(ReadData1, ReadData2, result, negative, zero, overflow, carry_out, 
+					  WriteData, clk, reset,ReadRegister1, ReadRegister2, WriteRegister,
+				  	  intoReadRegister2,MemWrite,mem_to_register,MemToReg,Movk_control,Imm16,
+					  Movz_control,shifter_input,LDURB_control);
+	output logic negative, zero, overflow, carry_out;
+	output logic [63:0] result;
+	logic [63:0] A, B;
+	logic [2:0] cntrl;
+	output logic [4:0] 	ReadRegister1, ReadRegister2, WriteRegister,intoReadRegister2;
+	output logic [63:0]	WriteData;
+	input logic 			clk, reset;
+	output logic [63:0]	ReadData1, ReadData2;	
+	logic [8:0] DAddr9; // input logic for store and load
+	logic [11:0] Imm12; // input addi
+	logic ALUSrc,ALUSrc2,Reg2Loc; // control input for alu input; Reg2Loc controls input to Ab register port
+	logic [63:0] SE_Daddr9,SE_Imm12,SE_Imm16;
+	logic [63:0] intermediate, intermediate2; //1 is out for Daddr9, into Imm12 control; 2 is out from Imm12	
+	logic [31:0] instruction;
+	logic RegWrite;
+	output logic MemWrite;
+	logic [3:0] xfer_size; // number of bytes to read 
+	output logic [63:0] mem_to_register;
+	output logic MemToReg;
+	output logic [15:0] Imm16;
+	output logic [3:0] Movk_control;
+	output logic Movz_control,LDURB_control;
+	output logic [5:0] shifter_input;
+	logic [63:0] shift_result, memmux_result, mem_byte_extend, mod_mem_to_reg;
+	
+	registerAluControlSystem controlsystem(.instruction,.Rd(WriteRegister),.Rm(ReadRegister2),.Rn(ReadRegister1),
+														.Reg2Loc,.RegWrite,.ALUSrc,.ALUSrc2,.ALUOp(cntrl),.DAddr9,.Imm12,
+														.MemWrite,.xfer_size,.MemToReg,.Movk_control,.Imm16,.Movz_control,
+														.shifter_input,.LDURB_control);	
+	
+	mux2_1_multibits#(5) b_port(.out(intoReadRegister2), .in0(WriteRegister), .in1(ReadRegister2), .control(Reg2Loc));
+	
+	
+	regfile registers (.ReadData1, .ReadData2, .WriteData,
+							 .ReadRegister1, .ReadRegister2(intoReadRegister2), .WriteRegister, .RegWrite(RegWrite), .clk);	
+	
+	alu connectDaDb (.A(ReadData1), .B, .cntrl, .result,
+						  .negative, .zero, .overflow, .carry_out);
+						  
+	SE#(9) daddr9 (.SE_out(SE_Daddr9),.in(DAddr9));
+	
+	Unsigned_SE#(12) daddr12 (.SE_out(SE_Imm12),.in(Imm12));
+	
+	Unsigned_SE#(16) imm16 (.SE_out(SE_Imm16),.in(Imm16));
+	
+	shifter imm16Shifter (.value(SE_Imm16), .direction(0), .distance(shifter_input), .result(shift_result));	
+	
+	
+	mux2_1_multibits toALU1(.out(intermediate), .in0(ReadData2), .in1(SE_Daddr9), .control(ALUSrc));
+	
+	mux2_1_multibits toALU2(.out(intermediate2), .in0(intermediate), .in1(SE_Imm12), .control(ALUSrc2));
+
+	genvar i;
+	generate
+	for (i = 0; i < 4; i++) begin: eamovk
+		mux2_1_multibits#(16) multi_movk_cntrl(.out(B[16*i+15:16*i]), .in0(intermediate2[16*i+15:16*i]),
+															.in1(Imm16), .control(Movk_control[i]));
+	end
+	endgenerate	
+	
+	PC_intromem_system instr_sources(.instruction,.clk,.reset,.zero_flag(zero),.negative,.carry_out,.overflow);
+	
+	
+	// processor after ALU
+	datamem memory (.address(result), .write_enable(MemWrite), .read_enable(1), .write_data(ReadData2), 
+						 .clk, .xfer_size, .read_data(mem_to_register));
+	
+	Unsigned_SE#(8) membyteSE (.SE_out(mem_byte_extend),.in(mem_to_register[7:0]));
+	
+	mux2_1_multibits memoutbranch(.out(mod_mem_to_reg), .in0(mem_to_register), .in1(mem_byte_extend), .control(LDURB_control));	
+	
+	mux2_1_multibits outMemMux(.out(memmux_result), .in0(result), .in1(mod_mem_to_reg), .control(MemToReg));
+	
+	mux2_1_multibits toRegister(.out(WriteData), .in0(memmux_result), .in1(shift_result), .control(Movz_control));	
+	
+endmodule
+
+
+`timescale 1ns/10ps
+module regfile_to_alu_testbench();
+	
+	parameter ClockDelay = 5000;	
+	
+	logic negative, zero, overflow, carry_out;
+	logic [63:0] result;
+	logic [4:0] 	ReadRegister1, ReadRegister2, WriteRegister,intoReadRegister2;
+	logic [63:0]	ReadData1, ReadData2;	
+	logic [63:0]	WriteData;
+	logic 			clk, reset;
+	logic MemWrite;
+	logic [63:0] mem_to_register;
+	logic MemToReg;
+	logic [15:0] Imm16;
+	logic [3:0] Movk_control;
+	logic Movz_control,LDURB_control;
+	logic [5:0] shifter_input;	
+	
+	processor dut(.ReadData1, .ReadData2, .result, .negative, .zero, .overflow, .carry_out, 
+					  .WriteData, .clk, .reset,.ReadRegister1, .ReadRegister2, .WriteRegister,
+					  .intoReadRegister2,.MemWrite,.mem_to_register,.MemToReg,.Movk_control,
+					  .Imm16,.Movz_control,.shifter_input,.LDURB_control);
+
+	initial $timeformat(-9, 2, " ns", 10);
+	
+	initial begin // Set up the clock
+		clk <= 0;
+		forever #(ClockDelay/2) clk <= ~clk;
+	end
+	integer i;
+	initial begin
+			reset <= 1; @(posedge clk);
+		for (i=0; i <= 1024; i = i + 4) begin
+			reset <= 0;
+			@(posedge clk); 
+		end
+		$stop;
+	end	
+endmodule

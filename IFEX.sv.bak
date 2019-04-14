@@ -1,0 +1,15 @@
+module IFEX(clk, Reg_ALUSrc, Reg_ALUOp, Reg_MemWE, Reg_Mem2Reg, Reg_RegWE
+				Ex_ALUSrc, Ex_ALUOp, Ex_MemWE, Ex_Mem2Reg, Ex_RegWE);
+	input logic Reg_ALUSrc, Reg_MemWE, Reg_Mem2Reg, Reg_RegWE;
+	input logic [2:0] Reg_ALUOp;
+	output logic  Ex_ALUSrc, Ex_MemWE, Ex_Mem2Reg, Ex_RegWE;
+	output logic [2:0] Ex_ALUOp;
+	input logic clk;
+	
+	
+	D_FF ALUSrcRecord(.q(Ex_ALUSrc), .d(Reg_ALUSrc), .reset(0), .clk);
+	Mult_D_FF ALUOpRecord #(3)(.q(Ex_ALUOp), .d(Reg_ALUOp), .reset(0), .clk);	
+	D_FF MemWERecord(.q(Ex_MemWE), .d(Reg_MemWE), .reset(0), .clk);
+	D_FF Mem2RegRecord(.q(Ex_Mem2Reg), .d(Reg_Mem2Reg), .reset(0), .clk);
+	D_FF RegWERecord(.q(Ex_RegWE), .d(Reg_RegWE), .reset(0), .clk);	
+endmodule

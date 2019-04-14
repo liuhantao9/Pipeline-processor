@@ -1,0 +1,7 @@
+module MemWR(clk,Mem_RegWE,Wr_RegWE);
+	input logic Mem_RegWE;
+	output logic Wr_RegWE;
+	input logic clk;
+	
+	D_FF RegWERecord(.q(Wr_RegWE), .d(Mem_RegWE), .reset(0), .clk);	
+endmodule

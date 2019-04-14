@@ -1,0 +1,114 @@
+module regfile_to_alu(ReadData1, ReadData2, result, negative, zero, overflow, carry_out, 
+							 WriteData, RegWrite, clk ,DAddr9,Imm12,ALUSrc,ALUSrc2,Reg2Loc,reset);
+	output logic negative, zero, overflow, carry_out;
+	output logic [63:0] result;
+	logic [63:0] A, B;
+	logic [2:0] cntrl;
+	logic [4:0] 	ReadRegister1, ReadRegister2, WriteRegister;
+	input logic [63:0]	WriteData;
+	input logic 			RegWrite,clk, reset;
+	output logic [63:0]	ReadData1, ReadData2;	
+	input logic [8:0] DAddr9; // input logic for store and load
+	input logic [11:0] Imm12; // input addi
+	input logic ALUSrc,ALUSrc2,Reg2Loc; // control input for alu input; Reg2Loc controls input to Ab register port
+	logic [63:0] SE_Daddr9,SE_Imm12;
+	logic [63:0] intermediate; //out for Daddr9, into Imm12 control;	
+	logic [31:0] instruction;
+	
+	registerAluControlSystem(.instruction,.clk,.reset,.Rd(WriteRegister),.Rm(ReadRegister2),.Rn(ReadRegister1),
+									 .Reg2Loc,.RegWrite,.ALUSrc,.ALUSrc2,.ALUOp(cntrl),.DAddr9,.Imm12);	
+	
+	mux2_1_multibits#(5) b_port(.out(intoReadRegister2), .in0(WriteRegister), .in1(ReadRegister2), .control(Reg2Loc));
+	
+	regfile registers (.ReadData1, .ReadData2, .WriteData,
+							 .ReadRegister1, .ReadRegister2(intoReadRegister2), .WriteRegister, .RegWrite, .clk);	
+	
+	alu connectDaDb (.A(ReadData1), .B, .cntrl, .result,
+						  .negative, .zero, .overflow, .carry_out);
+						  
+	SE#(9) daddr9 (.SE_out(SE_Daddr9),.in(DAddr9));
+	
+	SE#(12) daddr12 (.SE_out(SE_Imm12),.in(Imm12));
+	
+	mux2_1_multibits toALU1(.out(intermediate), .in0(ReadData2), .in1(SE_Daddr9), .control(ALUSrc));
+	
+	mux2_1_multibits toALU2(.out(B), .in0(intermediate), .in1(SE_Imm12), .control(ALUSrc2));
+
+	PC_intromem_system instr_sources(.instruction,.UncondBr(1'bx),.BrTaken(1'bx),.clk,.reset);
+	
+
+endmodule
+
+
+//`timescale 1ns/10ps
+//module regfile_to_alu_testbench();
+//	
+//	parameter ClockDelay = 5000;	
+//	
+//	logic negative, zero, overflow, carry_out;
+//	logic [63:0] result;
+//	logic [2:0] cntrl;
+//	logic [4:0] 	ReadRegister1, ReadRegister2, WriteRegister;
+//	logic [63:0]	WriteData;
+//	logic RegWrite, clk,reset;
+//	logic [63:0]	ReadData1, ReadData2;
+//	logic [8:0] DAddr9; // input logic for store and load
+//	logic [11:0] Imm12;
+//	logic ALUSrc,ALUSrc2,Reg2Loc;
+//	
+//	regfile_to_alu dut(.ReadData1, .ReadData2, .cntrl, .result, .negative, .zero, .overflow, .carry_out, 
+//							 .ReadRegister1, .ReadRegister2, .WriteData,.WriteRegister, .RegWrite, .clk, .DAddr9,.Imm12,
+//							 .ALUSrc,.ALUSrc2,.Reg2Loc,.reset);
+//	
+//	initial $timeformat(-9, 2, " ns", 10);
+//	
+//	initial begin // Set up the clock
+//		clk <= 0;
+//		forever #(ClockDelay/2) clk <= ~clk;
+//	end
+//	integer i;
+//	initial begin
+//		// Try to write the value 0xA0 into register 31.
+//		// Register 31 should always be at the value of 0.
+//		RegWrite <= 5'd0;
+//		ReadRegister1 <= 5'd0;
+//		ReadRegister2 <= 5'd0;
+//		WriteRegister <= 5'd31;
+//		WriteData <= 64'h00000000000000A0;
+//		reset <= 1; // make everyting not moving yet
+//		@(posedge clk);
+//		
+//		$display("%t Attempting overwrite of register 31, which should always be 0", $time);
+//		RegWrite <= 1;
+//		@(posedge clk);
+//
+//		// Write a value into each  register.
+//		$display("%t Writing pattern to all registers.", $time);
+//		for (i=0; i<31; i=i+1) begin
+//			RegWrite <= 0;
+//			ReadRegister1 <= i-1;
+//			ReadRegister2 <= i;
+//			WriteRegister <= i;
+//			WriteData <= i*64'h0000010204080001;
+//			@(posedge clk);
+//			
+//			RegWrite <= 1;
+//			@(posedge clk);
+//		end
+//
+//		// Go back and verify that the registers
+//		// retained the data.
+//		$display("%t Checking pattern.", $time);
+//		for (i=0; i<32; i=i+1) begin
+//			RegWrite <= 0;
+//			ReadRegister1 <= i-1;
+//			ReadRegister2 <= i;
+//			WriteRegister <= i;
+//			WriteData <= i*64'h0000000000000100+i;
+//			@(posedge clk);
+//		end
+//		reset <= 0; // unfreeze
+//		@(posedge clk);
+//		$stop;
+//	end	
+//endmodule

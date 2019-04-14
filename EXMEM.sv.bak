@@ -1,0 +1,11 @@
+module EXMEM(clk, Ex_MemWE, Ex_Mem2Reg, Ex_RegWE,
+			    Mem_MemWE, Mem_Mem2Reg, Mem_RegWE);
+	input logic Ex_MemWE, Ex_Mem2Reg, Ex_RegWE;
+	output logic Mem_MemWE, Mem_Mem2Reg, Mem_RegWE;
+	input logic clk;
+	
+	
+	D_FF MemWERecord(.q(Mem_MemWE), .d(Ex_MemWE), .reset(0), .clk);
+	D_FF Mem2RegRecord(.q(Mem_Mem2Reg), .d(Ex_Mem2Reg), .reset(0), .clk);
+	D_FF RegWERecord(.q(Mem_RegWE), .d(Ex_RegWE), .reset(0), .clk);	
+endmodule
